@@ -1,43 +1,48 @@
 package zad03;
 
-import javax.naming.directory.InvalidAttributesException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class RomeNumber {
 
+	LinkedHashMap<String,Integer> romanNumeralMap = new LinkedHashMap<String,Integer>();
 	private int n;
 
 	public RomeNumber(int n)
 	{
 		this.n = n;
+		romanNumeralMap.put("M",  1000);
+		romanNumeralMap.put("CM", 900);
+		romanNumeralMap.put("D",  500);
+		romanNumeralMap.put("CD", 400);
+		romanNumeralMap.put("C",  100);
+		romanNumeralMap.put("XC", 90);
+		romanNumeralMap.put("L",  50);
+		romanNumeralMap.put("XL", 40);
+		romanNumeralMap.put("X",  10);
+		romanNumeralMap.put("IX", 9);
+		romanNumeralMap.put("V",  5);
+		romanNumeralMap.put("IV", 4);
+		romanNumeralMap.put("I",  1);
 	}
 	
-	Hashmap<String,Integer> romanNumeralMap = new Hashmap<String,Integer>{};
-	romanNumeralMap = "M",  1000,
-            "CM", 900,
-            "D",  500,
-            "CD", 400,
-            "C",  100,
-            "XC", 90,
-            "L",  50,
-            "XL", 40,
-            "X",  10,
-            "IX", 9,
-            "V",  5,
-            "IV", 4,
-            "I",  1
 	@Override
 	public String toString(){
 		
-		String result = new String();
 		if(!(0 < n && n < 4000))
-	        throw new InvalidAttributesException();
+	        throw new Error("Liczba wychodzi poza zakres liczb rzymskich");
+		
+		String result = new String();
 		
 	    result = "";
-	    for numeral, integer in romanNumeralMap:
-	        while n >= integer:
-	            result += numeral
-	            n -= integer
-	    return result
-		return result;
+	    for (Map.Entry<String, Integer> entry : romanNumeralMap.entrySet()) {
+	        while(n >= entry.getValue())
+	        	{
+	        		result += entry.getKey();
+	        		n -= entry.getValue();
+	        	}
+	    }
+	    return result;
+
 	}
 }
