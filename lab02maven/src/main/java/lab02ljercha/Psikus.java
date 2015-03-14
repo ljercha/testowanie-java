@@ -1,4 +1,4 @@
-package lab02tdd;
+package lab02ljercha;
 
 public interface Psikus {
 	   Integer cyfrokrad(Integer liczba);

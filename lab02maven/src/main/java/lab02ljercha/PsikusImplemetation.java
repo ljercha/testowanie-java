@@ -1,13 +1,12 @@
-package lab02tdd;
+package lab02ljercha;
 
-import java.util.LinkedList;
 import java.util.Random;
 
+import lab02ljercha.NieudanyPsikusException;
 
-public class GraLab02 implements Psikus {
+public class PsikusImplemetation implements Psikus {
+
 	
-
-	@Override
 	public Integer cyfrokrad(Integer liczba) {
 		if(liczba >= 0 && liczba < 10)
 			return null;
@@ -19,7 +18,6 @@ public class GraLab02 implements Psikus {
 		return Integer.parseInt(sb.toString());
 	}
 
-	@Override
 	public Integer hultajchochla(Integer liczba) throws NieudanyPsikusException {
 		if(liczba >= 0 && liczba < 10)
 			throw new NieudanyPsikusException();
@@ -40,7 +38,6 @@ public class GraLab02 implements Psikus {
 		return Integer.parseInt(sb.toString());
 	}
 
-	@Override
 	public Integer nieksztaltek(Integer liczba) {
 		Random random = new Random();
 		String result = liczba.toString();
@@ -74,5 +71,4 @@ public class GraLab02 implements Psikus {
 
 	}
 
-		
 }
