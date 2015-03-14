@@ -3,13 +3,11 @@ package zad03;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
@@ -19,23 +17,18 @@ public class RomanTest
 		@Test
 		public void checkRomeNumber()
 		{
-			RomeNumber test = new RomeNumber(n);
-			assertEquals(expectedResult, test.toString());
+			RomeNumber exampleNumber = new RomeNumber(n);
+			assertThat(expectedResult, is(exampleNumber.toString()));
 		}
 
 		private Integer n;
 		private String expectedResult;
-		private RomanTest romanTest;
 
-
-		   // Each parameter should be placed as an argument here
-		   // Every time runner triggers, it will pass the arguments
-		   // from parameters we defined in primeNumbers() method
 		   public RomanTest(Integer inputNumber, String expectedResult) {
 		      this.n = inputNumber;
 		      this.expectedResult = expectedResult;
 		   }
-
+		   
 		   @Parameters
 		   public static Collection<Object[]> data() {
 		      return Arrays.asList(new Object[][] {

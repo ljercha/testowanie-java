@@ -1,108 +1,106 @@
 package lab02ljercha;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 public class PsikusTest {
 	
+	PsikusImplemetation psikus;
+	int result;
+	@Before
+	public void setup(){
+		psikus = new PsikusImplemetation();
+	}
+	
 	@Test
-	public void cyfrokrad0()
-	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
-		assertNull(psikus.cyfrokrad(0));
+	public void cyfrokradReturnNullBottomLimit()
+	{ 
+		assertThat(psikus.cyfrokrad(0),org.hamcrest.CoreMatchers.nullValue());
+		
 	}
 	@Test
-	public void cyfrokrad3()
+	public void cyfrokradReturnNull()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
-		assertNull(psikus.cyfrokrad(3));
-	}
+		assertThat(psikus.cyfrokrad(5),org.hamcrest.CoreMatchers.nullValue());	}
 	@Test
-	public void cyfrokrad9()
+	public void cyfrokradReturnNullTopLimit()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
-		assertNull(psikus.cyfrokrad(9));
-	}
+		assertThat(psikus.cyfrokrad(9),org.hamcrest.CoreMatchers.nullValue());	}
 	@Test
 	public void cyfrokradziez()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
-		int number = 111;
-		assertEquals(11, psikus.cyfrokrad(number).intValue());
+		int exampleNumber = 111;
+		assertThat(11, is(psikus.cyfrokrad(exampleNumber)));
 	}
 	@Test
-	public void cyfrokradziezLosowa3()
+	public void cyfrokradziezThreeDigit()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 259;
-		int result = psikus.cyfrokrad(number).intValue();
-		assertThat("Losowa cyfrokradziez powina wynosic 25 lub 29 lub 59.",
-				result == 25 || 
-				result == 29 ||
-				result == 59 );
+		result = psikus.cyfrokrad(number).intValue();
+		assertThat(result, is(anyOf(equalTo(25),equalTo(29),equalTo(59))));
 	}
 	@Test
-	public void cyfrokradziezLosowa1()
+	public void cyfrokradziezDoubleDigit()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 17;
-		int result = psikus.cyfrokrad(number).intValue();
-		assertThat("Losowa cyfrokradziez powina wynosic 1 lub 7.",
-				result == 1 || 
-				result == 7 );
+		result = psikus.cyfrokrad(number);
+		//assertThat(result, isOneOf(1,7));
 	}
 	
 	@Test(expected = NieudanyPsikusException.class)
 	public void hultajchochlaExpection() throws NieudanyPsikusException
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		psikus.hultajchochla(5);
-
 	}
 	@Test
-	public void hultajchochla2() throws NieudanyPsikusException
+	public void hultajchochlaDoubleDigit() throws NieudanyPsikusException
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
-			assertEquals(53,psikus.hultajchochla(35).intValue());
+		int number = 35;
+		result = psikus.hultajchochla(35);
+		assertThat(53, is(result));
 	}
 	@Test
-	public void hultajchochla3() throws NieudanyPsikusException
+	public void hultajchochlaThreeDigit() throws NieudanyPsikusException
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 468;
-		int result = psikus.hultajchochla(number).intValue();
-			assertThat("Losowa cyfrokradziez powina wynosic 864 lub 648 lub 486.",
-					result == 864 || 
-					result == 648 ||
-					result == 486 );
+		result = psikus.hultajchochla(number);
+		assertThat(result, is(anyOf(equalTo(864),
+									equalTo(648),
+									equalTo(486))));
 	}
 	@Test
-	public void niekształtek()
+	public void nieksztaltekEveryVariant()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 1234567;
-		int result = psikus.nieksztaltek(number).intValue();
-		assertThat("Losowa cyfrokradziez powina wynosic 1284567 lub 1234561 lub 1234597.",
-				result == 1284567 || 
-				result == 1234561 ||
-				result == 1234597 );
+		result = psikus.nieksztaltek(number);
+		assertThat(result, is(anyOf(equalTo(1284567),
+									equalTo(1234561),
+									equalTo(1234597))));
 	}
 	@Test
-	public void niekształtekSame()
+	public void nieksztaltekSameResult()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 1245;
-		assertEquals(1245,psikus.nieksztaltek(number).intValue());
+		result = psikus.nieksztaltek(number);
+		assertThat(1245, is(result));
 	}
 	@Test
-	public void niekształtekJednaliczba()
+	public void nieksztaltekThreeToEight()
 	{
-		PsikusImplemetation psikus = new PsikusImplemetation();
 		int number = 135;
-		assertEquals(185,psikus.nieksztaltek(number).intValue());
+		result = psikus.nieksztaltek(number);
+		assertThat(185,is(result));
+	}
+	@Test
+	public void nieksztaltekSixToNine()
+	{
+		int number = 926;
+		result = psikus.nieksztaltek(number);
+		assertThat(929,is(result));
 	}
 	
 }

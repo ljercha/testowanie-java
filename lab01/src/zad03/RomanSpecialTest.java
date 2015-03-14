@@ -8,21 +8,21 @@ public class RomanSpecialTest
 		@Test(expected=Error.class)
 		public void checkRomeNumberLessThanZero()
 		{
-			RomeNumber test = new RomeNumber(-3);
-			test.toString();
+			RomeNumber exampleNumber = new RomeNumber(-3);
+			exampleNumber.toString();
 		}
 		
 		@Test(expected=Error.class)
 		public void checkRomeNumberZero()
 		{
-			RomeNumber test = new RomeNumber(0);
-			test.toString();
+			RomeNumber exampleNumber = new RomeNumber(0);
+			exampleNumber.toString();
 		}
 		
 		@Test(expected=Error.class)
 		public void checkRomeNumberOutOfRange()
 		{
-			RomeNumber test = new RomeNumber(50000);
-			test.toString();
+			RomeNumber exampleNumber = new RomeNumber(50000);
+			exampleNumber.toString();
 		}
 	}
