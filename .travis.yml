@@ -2,3 +2,4 @@ language: java
 script:
   - mvn test -f lab01maven
   - mvn test -f lab02maven
+  - mvn test -f lab03mock

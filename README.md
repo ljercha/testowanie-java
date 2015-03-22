@@ -8,3 +8,6 @@
 
 #### Laboratorium 02
 - lab02maven projekt maven'owy(laboratorium 03)
+
+#### Laboratorium 03
+- testy klasy messenger(mockowanie)
