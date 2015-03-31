@@ -20,7 +20,14 @@ import com.example.mockdemo.messenger.SendingStatus;
 
 public class EasyMockTest {
 	
-
+	private static final int success = 0;
+	private static final int error = 1;
+	private static final int otherError = 2;
+	private static final String correctMessage = "dzisiaj";
+	private static final String wrongMessage = "to";
+	private static final String correctServer = "onet.pl";
+	private static final String  wrongServer = "google.com";
+	private static final String emptyServer = "";
 	MessageService mock;
 	Messenger messenger;
 
@@ -30,11 +37,6 @@ public class EasyMockTest {
 		mock = createMock(MessageService.class);
 		messenger = new Messenger(mock);
 		
-	//	expect(mock.send(anyString(), anyString())).andThrow(new MalformedRecipientException());
-//		expect(mock.send("\\w{4,}","\\w{3,}")).andReturn(SendingStatus.SENT);
-		//expect(mock.send(anyString(),anyString())).andReturn(SendingStatus.SENDING_ERROR);
-	//	replay(mock);
-//		verify(mock);
 	}
 	
 	@Test
@@ -42,7 +44,7 @@ public class EasyMockTest {
 	{
 		expect(mock.checkConnection(anyString())).andReturn(ConnectionStatus.FAILURE);
 		replay(mock);
-		assertThat(1,is(messenger.testConnection("google.com")));
+		assertThat(error,is(messenger.testConnection(wrongServer)));
 		verify(mock);
 	}
 	@Test
@@ -50,42 +52,42 @@ public class EasyMockTest {
 	{
 		expect(mock.checkConnection(matches(".*\\.pl"))).andReturn(ConnectionStatus.SUCCESS);
 		replay(mock);
-		assertThat(0,is(messenger.testConnection("onet.pl")));
+		assertThat(success,is(messenger.testConnection(correctServer)));
 		verify(mock);
 	}
 	
 	@Test
 	public void testSendMessageSuccess() throws MalformedRecipientException
 	{
-		expect(mock.send("onet.pl","dzisiaj")).andReturn(SendingStatus.SENT);
+		expect(mock.send(correctServer,correctMessage)).andReturn(SendingStatus.SENT);
 		replay(mock);
 		
-		assertThat(0,is(messenger.sendMessage("onet.pl", "dzisiaj")));
+		assertThat(success,is(messenger.sendMessage(correctServer, correctMessage)));
 		verify(mock);
 	}
 	@Test
 	public void testSendMessageFailureMessageWrongInput() throws MalformedRecipientException
 	{
-		expect(mock.send("onet.pl","tup")).andThrow(new MalformedRecipientException());
+		expect(mock.send(correctServer,wrongMessage)).andThrow(new MalformedRecipientException());
 		replay(mock);
-		assertThat(2,is(messenger.sendMessage("onet.pl", "tup")));
+		assertThat(otherError,is(messenger.sendMessage(correctServer, wrongMessage)));
 		verify(mock);
 	}
 	
 	@Test
 	public void testSendMessageServerEmpty() throws MalformedRecipientException
 	{
-		expect(mock.send("","dzisiaj")).andThrow(new MalformedRecipientException());
+		expect(mock.send(emptyServer,correctMessage)).andThrow(new MalformedRecipientException());
 		replay(mock);
-		assertThat(2,is(messenger.sendMessage("", "dzisiaj")));
+		assertThat(otherError,is(messenger.sendMessage(emptyServer, correctMessage)));
 		verify(mock);
 	}
 	@Test
 	public void testSendMessageCheckServerFailure() throws MalformedRecipientException
 	{
-		expect(mock.send("google.com","dzisiaj")).andReturn(SendingStatus.SENDING_ERROR);
+		expect(mock.send(wrongServer,correctMessage)).andReturn(SendingStatus.SENDING_ERROR);
 		replay(mock);
-		assertThat(1,is(messenger.sendMessage("google.com", "dzisiaj")));
+		assertThat(error,is(messenger.sendMessage(wrongServer, correctMessage)));
 		verify(mock);
 	}
 
