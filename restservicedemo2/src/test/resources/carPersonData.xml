@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <CARPERSON ID_CAR="0" ID_PERSON="1" />
+  <CARPERSON ID_CAR="1" ID_PERSON="1" />
+  <CARPERSON ID_CAR="2" ID_PERSON="2" />
+  <CARPERSON ID_CAR="4" ID_PERSON="0" />
+</dataset>

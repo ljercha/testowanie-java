@@ -1,0 +1,19 @@
+{
+	"id": {"type": "integer"},
+	"make": {type:"string"},
+	"model": {type:"string"},
+	"owner": {
+		"firstName": {
+			"type": "string"
+		},
+		id{
+			"type": integer
+		},
+		"yob": {
+			"type": "integer",
+			"minimum": 1990
+		}
+	},
+	"yop":{"type":
+	"required": ["id", "firstName"]
+}

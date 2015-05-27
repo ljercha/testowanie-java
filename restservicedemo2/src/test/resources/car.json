@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "http://jsonschema.net/id",
+      "type": "string"
+    },
+    "make": {
+      "id": "http://jsonschema.net/make",
+      "type": "string"
+    },
+    "model": {
+      "id": "http://jsonschema.net/model",
+      "type": "string"
+    },
+    "owner": {
+      "id": "http://jsonschema.net/owner",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "id": "http://jsonschema.net/owner/firstName",
+          "type": "string"
+        },
+        "id": {
+          "id": "http://jsonschema.net/owner/id",
+          "type": "string"
+        },
+        "yob": {
+          "id": "http://jsonschema.net/owner/yob",
+          "type": "string"
+        }
+      }
+    },
+    "yop": {
+      "id": "http://jsonschema.net/yop",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "make",
+    "model",
+    "owner",
+    "yop"
+  ]
+}
