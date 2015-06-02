@@ -25,49 +25,63 @@ public class GamesSteps {
 	public void setServer(int number){
 		this.number = number;
 	}
+	
+	@Then("jajca")
+	public void jajca()
+	{
+		assertThat(psikus.cyfrokrad(number), is(nullValue()));
+		assertThat("jajca", containsString("jaj"));
+	}
 
-	@Then("cyfrokad should return $result1 or $result2")
-	public void cyfrokad(int result1, int result2){
+	@Then("cyfrokrad2 should return $result1 or $result2")
+	public void cyfrokad2(int result1, int result2){
 	assertThat(psikus.cyfrokrad(number), either(is(result1)).or(is(result2)));
 	}
-	@Then("cyfrokad should return $result1 or $result2 or $result3")
-	public void cyfrokad(int result1,int result2, int result3){
+	@Then("cyfrokrad3 should return $result1 or $result2 or $result3")
+	public void cyfrokad3(int result1,int result2, int result3){
 	assertThat(psikus.cyfrokrad(number), is(anyOf(equalTo(result1),equalTo(result2),equalTo(result3))));
 	}
-	@Then("cyfrokad should return null")
+	@Then("cyfrokrad should return null")
 	public void cyfrokad(){
 		assertThat(psikus.cyfrokrad(number), is(nullValue()));
 	}
 	
-	@Then("hultajchochla should return $result1")
-	public void hultajchochla(int result1) throws NieudanyPsikusException{
+	@Then("hultajchochla1 should return $result1")
+	public void hultajchochla1(int result1) throws NieudanyPsikusException{
 	assertThat(psikus.hultajchochla(number), is(result1));
 	}
-	@Then("hultajchochla should return $result1 or $result2 or $result3")
-	public void hultajchochla(int result1,int result2, int result3) throws NieudanyPsikusException{
+	@Then("hultajchochla3 should return $result1 or $result2 or $result3")
+	public void hultajchochla3(int result1,int result2, int result3) throws NieudanyPsikusException{
 	assertThat(psikus.hultajchochla(number), is(anyOf(equalTo(result1),equalTo(result2),equalTo(result3))));
 	}
 	@Then("hultajchochla should throw exception")
-	@Test(expected=NieudanyPsikusException.class)
-	public void hultajchochla() throws NieudanyPsikusException{
+	public void hultajchochla(){
 		psikus = new PsikusImplemetation();
+		int exception = 0;
+		try
+		{
 		psikus.hultajchochla(number);
+		}
+		catch(NieudanyPsikusException e)
+		{
+			exception = 1;
+		}
+		assertThat(exception, is(1));
 	}
 	
-	@Then("nieksztaltek should return $result1 or $result2")
-	public void nieksztaltek(int result1, int result2){
+	@Then("nieksztaltek2 should return $result1 or $result2")
+	public void nieksztaltek2(int result1, int result2){
 	assertThat(psikus.nieksztaltek(number), either(is(result1)).or(is(result2)));
 	}
 	
-	@Then("nieksztaltek should return $result1")
-	public void nieksztaltek(int result1){
+	@Then("nieksztaltek1 should return $result1")
+	public void nieksztaltek1(int result1){
 	assertThat(psikus.nieksztaltek(number), is(result1));
 	}
-	@Then("nieksztaltek should return $result1 or $result2 or $result3")
-	public void nieksztaltek(int result1,int result2, int result3){
+	@Then("nieksztaltek3 should return $result1 or $result2 or $result3")
+	public void nieksztaltek3(int result1,int result2, int result3){
 	assertThat(psikus.nieksztaltek(number), is(anyOf(equalTo(result1),equalTo(result2),equalTo(result3))));
 
-	
 	}
 }
 

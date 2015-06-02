@@ -1,6 +1,11 @@
 language: java
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start -screen 0 1280x1024x16
+  - sleep 10
 script:
   - mvn test -f lab01maven
   - mvn test -f lab02maven
   - mvn test -f lab0304mock
   - mvn test -f lab05bdd
+  - mvn test -f selenium07
