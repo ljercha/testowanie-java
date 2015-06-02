@@ -18,6 +18,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -25,6 +26,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -37,8 +39,7 @@ public class AllegroTest {
 	WebDriverWait wait;
 	@Before
 	public void setup() {
-		System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.get("http://www.last.fm/");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
