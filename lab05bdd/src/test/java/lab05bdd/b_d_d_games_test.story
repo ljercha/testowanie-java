@@ -14,8 +14,7 @@ Then cyfrokrad2 should return 1 or 7
 When set number to 259
 Then cyfrokrad3 should return 25 or 29 or 59
 
-When set number to 5
-Then hultajchochla should throw exception
+
 
 When set number to 15
 Then hultajchochla1 should return 51
@@ -42,4 +41,8 @@ When set number to 437
 Then nieksztaltek2 should return 487 or 431
 
 When set number to 376
-Then nieksztaltek3 should return 876 or 317 or 379 
+Then nieksztaltek3 should return 876 or 316 or 379 
+
+When set number to 5
+Then hultajchochla should throw exception
+
